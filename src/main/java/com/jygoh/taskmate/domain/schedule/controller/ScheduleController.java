@@ -5,7 +5,9 @@ import com.jygoh.taskmate.domain.schedule.dto.SkedListResponseDto;
 import com.jygoh.taskmate.domain.schedule.dto.SkedResponseDto;
 import com.jygoh.taskmate.domain.schedule.repository.ScheduleRepository;
 import com.jygoh.taskmate.domain.schedule.service.ScheduleService;
+
 import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -25,7 +27,7 @@ public class ScheduleController {
     private final ScheduleRepository scheduleRepository;
 
     public ScheduleController(ScheduleService scheduleService,
-        ScheduleRepository scheduleRepository) {
+                              ScheduleRepository scheduleRepository) {
         this.scheduleService = scheduleService;
         this.scheduleRepository = scheduleRepository;
     }
@@ -48,7 +50,7 @@ public class ScheduleController {
 
     @GetMapping("/search")
     public ResponseEntity<List<SkedListResponseDto>> searchSchedulesByTitle(
-        @RequestParam(required = false) String title) {
+            @RequestParam(required = false) String title) {
         List<SkedListResponseDto> schedules;
         if (title != null && !title.isEmpty()) {
             schedules = scheduleService.searchSchedulesByTitle(title);
@@ -61,7 +63,7 @@ public class ScheduleController {
 
     @PostMapping
     public ResponseEntity<String> createSchedule(
-        @RequestBody SkedCreateRequestDto skedCreateRequestDto) {
+            @RequestBody SkedCreateRequestDto skedCreateRequestDto) {
         scheduleService.createSchedule(skedCreateRequestDto);
 
         return ResponseEntity.status(HttpStatus.CREATED).body("Schedule created");
