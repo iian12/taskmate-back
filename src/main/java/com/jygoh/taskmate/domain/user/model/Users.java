@@ -1,9 +1,6 @@
 package com.jygoh.taskmate.domain.user.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
@@ -16,16 +13,22 @@ public class Users {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String email;
-
-    private String password;
-
+    @Column(nullable = false, unique = true)
     private String username;
 
+    @Column(nullable = false, unique = true)
+    private String email;
+
+    @Column(nullable = false)
+    private String password;
+
+    private String nickname;
+
     @Builder
-    public Users(String email, String password, String username) {
+    public Users(String username, String email, String password, String nickname) {
+        this.username = username;
         this.email = email;
         this.password = password;
-        this.username = username;
+        this.nickname = nickname;
     }
 }

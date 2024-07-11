@@ -17,12 +17,10 @@ public class Category {
     private Long id;
 
     private String name;
-
     private String userId;
 
     @Builder
-    public Category(Long id, String name, String userId) {
-        this.id = id;
+    public Category(String name, String userId) {
         this.name = name;
         this.userId = userId;
     }

@@ -3,12 +3,11 @@ package com.jygoh.taskmate.domain.schedule.model;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import java.time.LocalDateTime;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
-import java.time.LocalDateTime;
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -19,24 +18,23 @@ public class Schedules {
     @GeneratedValue
     private Long id;
 
-    private String userId;
-
     private String title;
-
     private String description;
-
-    private Long categoryId;
-
     private LocalDateTime startTime;
-
     private LocalDateTime endTime;
 
+    private Long userId;
+    private Long categoryId;
+
     @Builder
-    public Schedules(String userId, String title, String description, LocalDateTime startTime, LocalDateTime endTime) {
-        this.userId = userId;
+    public Schedules(Long id, String title, String description, LocalDateTime startTime,
+        LocalDateTime endTime, Long userId, Long categoryId) {
+        this.id = id;
         this.title = title;
         this.description = description;
         this.startTime = startTime;
         this.endTime = endTime;
+        this.userId = userId;
+        this.categoryId = categoryId;
     }
 }
